@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "391913391234",
+    "project_id": "estibafy-helper",
+    "storage_bucket": "estibafy-helper.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:391913391234:android:51a5adc79604e6cf39e09b",
+        "android_client_info": {
+          "package_name": "com.example.estibafy_helpers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "391913391234-76fss932i0ec4nt3b8e1bm0hvravqr55.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.estibafy_helpers",
+            "certificate_hash": "d8ea445ea54f3c548c58b614e2c72e93935d78d5"
+          }
+        },
+        {
+          "client_id": "391913391234-rvpbbd70u3n0rmkc7q8lejdgc0l2ji2d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBptSrda5_FQVO58Kr_Y1Moqr1fYUmOyqQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "391913391234-rvpbbd70u3n0rmkc7q8lejdgc0l2ji2d.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "391913391234-pgppkmdss8asnoamg7fs5g87ghvf3t53.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.estibafyHelpers"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
