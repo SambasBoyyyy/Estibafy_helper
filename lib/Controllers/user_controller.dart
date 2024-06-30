@@ -116,12 +116,12 @@ class UserController extends GetxController {
         var data = result;
 
         print("---WELCOME---$data");
-        // user.value = User(
-        //   name: result['data']['users']['name'],
-        //   email: email,
-        //   phoneNumber: result['data']['users']['name'],
-        //   password: password,
-        // );
+        user.value = User(
+          name: data.name ?? '',//result['data']['users']['name'],
+          email: email,
+          phoneNumber: data.mobile ??"",
+          password: password,
+        );
 
         // K.localStorage
         //     .write(K.loggedInUser, result['data']['token']['access_token']);
