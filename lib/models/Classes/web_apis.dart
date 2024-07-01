@@ -154,6 +154,27 @@ class WebAPIs {
       return null;
     }
   }
+  static Future<http.Response> updateProfile({
+    required Map<String, dynamic> body,
+  }) async {
+    // Convert the body to form data
+    String formData = body.entries.map((entry) => '${Uri.encodeComponent(entry.key)}=${Uri.encodeComponent(entry.value.toString())}').join('&');
+
+    print("body=== $formData");
+
+    http.Response response = await http.post(
+      Uri.parse(baseURL + "profile"),
+      headers: {
+        ...getAuthHeader(),
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: formData,
+    );
+
+    print("response.body=== ${response.body}");
+
+    return response;
+  }
 
   static Future<Map<String, dynamic>?> otpVerify({
     required String otpCode,

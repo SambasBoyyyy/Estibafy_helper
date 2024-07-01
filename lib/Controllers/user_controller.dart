@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 // import 'package:device_info_plus/device_info_plus.dart';
@@ -8,10 +9,13 @@ import 'package:estibafy_helpers/models/Classes/user.dart';
 import 'package:estibafy_helpers/models/Classes/web_apis.dart';
 import 'package:estibafy_helpers/models/Example%20Object/example_object.dart';
 import 'package:estibafy_helpers/models/utils/constant.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:location/location.dart';
 
+import '../Views/show_messages.dart';
 import '../models/UserModel/UserModel.dart';
 import '../models/fcm_notifications.dart';
 
@@ -24,7 +28,74 @@ class UserController extends GetxController {
   // Map<String, dynamic>? dictionary;
   // HashMap<dynamic, String>? name;
 
+  @override
+  void onInit() {
+    super.onInit();
+    loadUserData();
+  }
+  void loadUserData() {
+    var localUserData = K.localStorage.read(K.userControllerTag);
+    if (localUserData != null) {
+      user.value = User.fromJson(localUserData);
+      // Update text controllers with the loaded data
+      nameControllerSignup.text = user.value.name ?? '';
+      contactControllerSignup.text = user.value.phoneNumber ?? '';
+      confirmPasswordControllerSignup.text = user.value.password ?? '';
+    }
+  }
   late String userToken;
+  TextEditingController contactControllerSignup = TextEditingController();
+  TextEditingController nameControllerSignup = TextEditingController();
+  TextEditingController passwordControllerSignup = TextEditingController();
+  TextEditingController confirmPasswordControllerSignup = TextEditingController();
+
+  Future<void> updateProfile() async {
+    var body = {
+      "mobile": contactControllerSignup.text == '' ? user.value.phoneNumber : contactControllerSignup.text,
+      "name": nameControllerSignup.text == '' ? user.value.name : nameControllerSignup.text,
+      "password": confirmPasswordControllerSignup.text == '' ? user.value.password : confirmPasswordControllerSignup.text,
+      "password_confirm": confirmPasswordControllerSignup.text == '' ? user.value.password : confirmPasswordControllerSignup.text,
+    };
+
+    EasyLoading.show(status: 'Updating...');
+
+    try {
+      final response = await WebAPIs.updateProfile(body: body);
+      var data = jsonDecode(response.body);
+      if (data['statusCode'] == 200) {
+        print("Old User: ${user.value.name}");
+
+        var updatedUser = User(
+          name: nameControllerSignup.text == '' ? user.value.name : nameControllerSignup.text,
+          email: user.value.email,
+          phoneNumber: contactControllerSignup.text == '' ? user.value.phoneNumber : contactControllerSignup.text,
+          password: confirmPasswordControllerSignup.text == '' ? user.value.password : confirmPasswordControllerSignup.text,
+        );
+
+        // Check if there are any changes
+        if (user.value.name != updatedUser.name ||
+            user.value.phoneNumber != updatedUser.phoneNumber ||
+            user.value.password != updatedUser.password) {
+          user.value = updatedUser;
+
+          // Update the UserController tag locally
+          K.localStorage.write(K.userControllerTag, user.value.toJson());
+          var localUserData = K.localStorage.read(K.userControllerTag);
+          var originalUser = User.fromJson(localUserData);
+          print("Updated User: ${originalUser.imagePath}");
+        } else {
+          print("No changes were made to the user profile.");
+        }
+      } else {
+        ShowMessage().showErrorMessage('Update failed');
+      }
+    } catch (e) {
+      ShowMessage().showErrorMessage(e.toString());
+    } finally {
+      EasyLoading.dismiss();
+    }
+  }
+
 
   Future<Map<String, dynamic>?> signUp({
     required String name,
@@ -278,6 +349,47 @@ class UserController extends GetxController {
 
     return await location.getLocation();
   }
+
+  File? _image;
+  Widget displayImage() {
+    if (_image == null) {
+      return Container(
+        height: 80,
+        width: 80,
+        decoration:  const BoxDecoration(
+          shape: BoxShape.circle,
+          color: secondaryColor,
+        ),
+        child: ClipRRect(
+          child: Image.network(
+            user.value.imagePath ?? '',
+            height: 80,
+            width: 80,
+            fit: BoxFit.cover,
+          ),
+          borderRadius: BorderRadius.circular(75),
+        ),
+      );
+    } else {
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(75),
+        child: Image.file(
+          _image!,
+          fit: BoxFit.cover,
+        ),
+      );
+    }
+  }
+  final picker = ImagePicker();
+
+  Future getImage() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      _image = File(pickedFile!.path);
+    });
+  }
+  void setState(Null Function() param0) {}
+
 
 
 }

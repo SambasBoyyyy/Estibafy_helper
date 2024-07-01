@@ -23,6 +23,9 @@ class _SideDrawerState extends State<SideDrawer> {
 
   @override
   Widget build(BuildContext context) {
+    final userData = K.localStorage.read(K.userControllerTag);
+    final userName = userData != null ? userData['name'] : 'Guest';
+    final userEmail = userData != null ? userData['email'] : 'guest@example.com';
     return SafeArea(
       child: ClipRRect(
         borderRadius: const BorderRadius.only(
@@ -102,7 +105,7 @@ class _SideDrawerState extends State<SideDrawer> {
                                     const SizedBox(
                                       height: 8,
                                     ),
-                                    Text(_userController.user.value.name,
+                                    Text(userName,
                                         style: textStyle2.copyWith(
                                             fontWeight: FontWeight.w600,
                                             color: primaryColor)),
@@ -112,7 +115,7 @@ class _SideDrawerState extends State<SideDrawer> {
                                     Row(
                                       children: [
                                         const Icon(
-                                          Icons.phone_android_outlined,
+                                          Icons.email_outlined,
                                           size: 16,
                                           color: primaryColor,
                                         ),
@@ -120,8 +123,7 @@ class _SideDrawerState extends State<SideDrawer> {
                                           width: 5,
                                         ),
                                         Text(
-                                          _userController
-                                              .user.value.phoneNumber,
+                                          userEmail,
                                           style: textStyle2.copyWith(
                                               color: primaryColor),
                                         ),
@@ -216,10 +218,10 @@ class _SideDrawerState extends State<SideDrawer> {
                                 borderRadius: BorderRadius.circular(30),
                               )),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               const SizedBox(
-                                width: 20,
+                                width: 10,
                                 child: Icon(
                                   Icons.logout,
                                   size: 20,
@@ -227,7 +229,7 @@ class _SideDrawerState extends State<SideDrawer> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(2.0),
                                 child: Text(
                                   'Log Out',
                                   style:

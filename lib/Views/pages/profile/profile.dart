@@ -29,6 +29,9 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
+    final userData = K.localStorage.read(K.userControllerTag);
+    final userName = userData != null ? userData['name'] : 'Guest';
+    final userEmail = userData != null ? userData['email'] : 'guest@example.com';
     return Scaffold(
         key: _scaffoldKey,
         backgroundColor: secondaryColor,
@@ -83,7 +86,7 @@ class _ProfileState extends State<Profile> {
                                 Expanded(
                                   child: input4(
                                       text: _userController.user.value.name,
-                                      controller: profileController.nameController),
+                                      controller: _userController.nameControllerSignup),
                                 ),
                                 // Expanded(
                                 //   child: input4(
@@ -131,7 +134,7 @@ class _ProfileState extends State<Profile> {
                                 Expanded(
                                   child: input4(
                                       text: _userController.user.value.phoneNumber,
-                                      controller: profileController.phoneController),
+                                      controller:_userController.contactControllerSignup ),
                                 ),
                               ],
                             ),
@@ -196,38 +199,38 @@ class _ProfileState extends State<Profile> {
                             const SizedBox(
                               height: 12,
                             ),
-                            Row(
-                              children: [
-                                ClipRRect(
-                                  clipBehavior: Clip.hardEdge,
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(5)),
-                                  child: Transform.scale(
-                                    scale: 0.9,
-                                    child: Theme(
-                                      data: ThemeData(
-                                          unselectedWidgetColor: fourthColor),
-                                      child: Checkbox(
-                                        checkColor: secondaryColor,
-                                        focusColor: primaryColor,
-                                        hoverColor: secondaryColor,
-                                        activeColor: primaryColor,
-                                        value: profileController.isShowCompanyChecked.value,
-                                        onChanged: (bool? value) {
-                                          setState(() {
-                                            profileController.isShowCompanyChecked.value = value!;
-                                          });
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Text(
-                                  "Show as company",
-                                  style: textStyle2,
-                                ),
-                              ],
-                            ),
+                            // Row(
+                            //   children: [
+                            //     ClipRRect(
+                            //       clipBehavior: Clip.hardEdge,
+                            //       borderRadius: const BorderRadius.all(
+                            //           Radius.circular(5)),
+                            //       child: Transform.scale(
+                            //         scale: 0.9,
+                            //         child: Theme(
+                            //           data: ThemeData(
+                            //               unselectedWidgetColor: fourthColor),
+                            //           child: Checkbox(
+                            //             checkColor: secondaryColor,
+                            //             focusColor: primaryColor,
+                            //             hoverColor: secondaryColor,
+                            //             activeColor: primaryColor,
+                            //             value: profileController.isShowCompanyChecked.value,
+                            //             onChanged: (bool? value) {
+                            //               setState(() {
+                            //                 profileController.isShowCompanyChecked.value = value!;
+                            //               });
+                            //             },
+                            //           ),
+                            //         ),
+                            //       ),
+                            //     ),
+                            //     Text(
+                            //       "Show as company",
+                            //       style: textStyle2,
+                            //     ),
+                            //   ],
+                            // ),
                             Divider(
                               color: tertiaryColor.withOpacity(0.5),
                             ),
@@ -241,11 +244,11 @@ class _ProfileState extends State<Profile> {
                             Stack(
                               children: [
                                 TextField(
-                                  controller: profileController.passwordController,
+                                  controller: _userController.passwordControllerSignup,
                                   cursorColor: primaryColor,
                                   obscureText: profileController.isObscurePassword,
                                   decoration: InputDecoration(
-                                    hintText: profileController.passwordController.text,
+                                    hintText: _userController.user.value.password,
                                     hintStyle: textStyle3,
                                     border: InputBorder.none,
                                     prefixIcon: const Icon(
@@ -280,27 +283,30 @@ class _ProfileState extends State<Profile> {
                             const SizedBox(
                               height: 5,
                             ),
-                            // Padding(
-                            //   padding: const EdgeInsets.all(20.0),
-                            //   child: SizedBox(
-                            //     height: 55,
-                            //     width: double.infinity,
-                            //     child: ElevatedButton(
-                            //       onPressed: () {},
-                            //       style: ElevatedButton.styleFrom(
-                            //           primary:primaryColor,
-                            //           onPrimary:secondaryColor,
-                            //           shape: RoundedRectangleBorder(
-                            //             borderRadius: BorderRadius.circular(5),
-                            //           )),
-                            //       child: Text(
-                            //         'Save',
-                            //         style: textStyle3.copyWith(
-                            //             color: secondaryColor),
-                            //       ),
-                            //     ),
-                            //   ),
-                            // ),
+                            Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: SizedBox(
+                                height: 55,
+                                width: double.infinity,
+                                child: ElevatedButton(
+                                  onPressed: () async {
+                                    await _userController.updateProfile();
+                                    _userController.loadUserData();
+                                    setState(() {});
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                      foregroundColor: secondaryColor, backgroundColor: primaryColor,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                      )),
+                                  child: Text(
+                                    'Save',
+                                    style: textStyle3.copyWith(
+                                        color: secondaryColor),
+                                  ),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
