@@ -73,25 +73,25 @@ class LoginOrCreateAccount extends StatelessWidget {
                   const SizedBox(
                     height: 14,
                   ),
-                  SizedBox(
-                    height: 55,
-                    width: double.infinity,
-                    child: TextButton(
-                      onPressed: () {
-                        Get.to(const SignUp());
-                      },
-                      style: TextButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5),
-                        side: const BorderSide(color: secondaryColor),
-                      )),
-                      child: Text(
-                        'Create an account',
-                        style: textStyle3.copyWith(
-                            color: secondaryColor, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
+                  // SizedBox(
+                  //   height: 55,
+                  //   width: double.infinity,
+                  //   child: TextButton(
+                  //     onPressed: () {
+                  //       Get.to(const SignUp());
+                  //     },
+                  //     style: TextButton.styleFrom(
+                  //         shape: RoundedRectangleBorder(
+                  //       borderRadius: BorderRadius.circular(5),
+                  //       side: const BorderSide(color: secondaryColor),
+                  //     )),
+                  //     child: Text(
+                  //       'Create an account',
+                  //       style: textStyle3.copyWith(
+                  //           color: secondaryColor, fontWeight: FontWeight.bold),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             )),

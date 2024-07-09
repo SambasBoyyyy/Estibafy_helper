@@ -9,6 +9,7 @@ class ExampleObjects {
     email: 'emiliaclarke@gmail.com',
     phoneNumber: '305-667-5677',
     password: 'meowmeow',
+      country:  '', address: '', city: '', state: ''
   );
   static List provinceChooseList =[
     'Guayas',

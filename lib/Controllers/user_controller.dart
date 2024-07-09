@@ -48,6 +48,11 @@ class UserController extends GetxController {
   TextEditingController nameControllerSignup = TextEditingController();
   TextEditingController passwordControllerSignup = TextEditingController();
   TextEditingController confirmPasswordControllerSignup = TextEditingController();
+  TextEditingController emailControllerSignup = TextEditingController();
+  TextEditingController addressControllerSignup = TextEditingController();
+  TextEditingController cityControllerSignup = TextEditingController();
+  TextEditingController stateControllerSignup = TextEditingController();
+  TextEditingController countryControllerSignup = TextEditingController();
 
   Future<void> updateProfile() async {
     var body = {
@@ -63,13 +68,14 @@ class UserController extends GetxController {
       final response = await WebAPIs.updateProfile(body: body);
       var data = jsonDecode(response.body);
       if (data['statusCode'] == 200) {
-        print("Old User: ${user.value.name}");
+        print("Old User: ${user.value.address}");
 
         var updatedUser = User(
           name: nameControllerSignup.text == '' ? user.value.name : nameControllerSignup.text,
           email: user.value.email,
           phoneNumber: contactControllerSignup.text == '' ? user.value.phoneNumber : contactControllerSignup.text,
           password: confirmPasswordControllerSignup.text == '' ? user.value.password : confirmPasswordControllerSignup.text,
+            country:  '', address: '', city: '', state: ''
         );
 
         // Check if there are any changes
@@ -141,11 +147,13 @@ class UserController extends GetxController {
         email: email,
         phoneNumber: phone,
         password: password,
+          country: '', address: '', city: '', state: ''
         // passwordConfirm:passwordConfirm,
       );
       K.localStorage.write(K.loggedInUser, result['data']['token']['access_token']);
       userToken = result['data']['token']['access_token'];
       K.localStorage.write(result['data']['token']['access_token'], user.value);
+      K.localStorage.write(K.userControllerTag, user.value.toJson());
       String? token = await FCMNotifications.messaging.getToken();
       if (token != null) {
         await WebAPIs.sendNotificationToken(token: token);
@@ -192,6 +200,7 @@ class UserController extends GetxController {
           email: email,
           phoneNumber: data.mobile ??"",
           password: password,
+          country: data.country ?? '', address: '', city: '', state: ''
         );
 
         // K.localStorage
@@ -199,7 +208,7 @@ class UserController extends GetxController {
         K.localStorage.write(K.loggedInUser, data.accessToken.toString());
         userToken = data.accessToken.toString();
         K.localStorage.write(data.accessToken.toString(), user.value);
-
+        K.localStorage.write(K.userControllerTag, user.value.toJson());
         K.showToast(message: 'Welcome ${data.name}');
         Get.offAll(() => const NavBar());
         String? token = await FCMNotifications.messaging.getToken();

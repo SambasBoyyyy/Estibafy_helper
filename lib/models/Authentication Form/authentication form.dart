@@ -143,27 +143,27 @@ class _LoginFormState extends State<LoginForm> {
                 const SizedBox(
                   height: 13,
                 ),
-                Container(
-                  height: 55,
-                  width: double.infinity,
-                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                  child: TextButton(
-                    onPressed: () {
-                      Get.to(const SignUp());
-                    },
-                    style: TextButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          side: const BorderSide(color: primaryColor, width: 0.5),
-                        )),
-                    child: Text(
-                      'Create Account',
-                      style: textStyle3.copyWith(
-                        color: primaryColor,
-                      ),
-                    ),
-                  ),
-                ),
+                // Container(
+                //   height: 55,
+                //   width: double.infinity,
+                //   margin: const EdgeInsets.symmetric(horizontal: 10),
+                //   child: TextButton(
+                //     onPressed: () {
+                //       Get.to(const SignUp());
+                //     },
+                //     style: TextButton.styleFrom(
+                //         shape: RoundedRectangleBorder(
+                //           borderRadius: BorderRadius.circular(5),
+                //           side: const BorderSide(color: primaryColor, width: 0.5),
+                //         )),
+                //     child: Text(
+                //       'Create Account',
+                //       style: textStyle3.copyWith(
+                //         color: primaryColor,
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             )),
       ],

@@ -23,6 +23,7 @@ class _SideDrawerState extends State<SideDrawer> {
 
   @override
   Widget build(BuildContext context) {
+    // Read user data from GetStorage
     final userData = K.localStorage.read(K.userControllerTag);
     final userName = userData != null ? userData['name'] : 'Guest';
     final userEmail = userData != null ? userData['email'] : 'guest@example.com';
@@ -115,7 +116,7 @@ class _SideDrawerState extends State<SideDrawer> {
                                     Row(
                                       children: [
                                         const Icon(
-                                          Icons.email_outlined,
+                                          Icons.email,
                                           size: 16,
                                           color: primaryColor,
                                         ),

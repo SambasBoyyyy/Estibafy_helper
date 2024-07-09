@@ -20,18 +20,19 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  ProfileController profileController =Get.put(ProfileController());
-  final UserController _userController =Get.find(tag: K.userControllerTag);
+  ProfileController profileController = Get.put(ProfileController());
+  final UserController _userController = Get.find(tag: K.userControllerTag);
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   String? provinceChoose;
-  String? countryChoose ;
+  String? countryChoose;
 
   @override
   Widget build(BuildContext context) {
     final userData = K.localStorage.read(K.userControllerTag);
     final userName = userData != null ? userData['name'] : 'Guest';
-    final userEmail = userData != null ? userData['email'] : 'guest@example.com';
+    final userEmail =
+        userData != null ? userData['email'] : 'guest@example.com';
     return Scaffold(
         key: _scaffoldKey,
         backgroundColor: secondaryColor,
@@ -55,12 +56,12 @@ class _ProfileState extends State<Profile> {
                       width: double.infinity,
                       height: double.infinity,
                       decoration: BoxDecoration(
-                        border: Border.all(color:sixthColor),
+                        border: Border.all(color: sixthColor),
                         borderRadius: BorderRadius.circular(15),
-                        color:secondaryColor,
+                        color: secondaryColor,
                         boxShadow: [
                           BoxShadow(
-                            color:primaryColor.withOpacity(0.5),
+                            color: primaryColor.withOpacity(0.5),
                             blurRadius: 9,
                             offset: const Offset(4, 8), // Shadow position
                           ),
@@ -86,7 +87,8 @@ class _ProfileState extends State<Profile> {
                                 Expanded(
                                   child: input4(
                                       text: _userController.user.value.name,
-                                      controller: _userController.nameControllerSignup),
+                                      controller:
+                                          _userController.nameControllerSignup),
                                 ),
                                 // Expanded(
                                 //   child: input4(
@@ -97,7 +99,8 @@ class _ProfileState extends State<Profile> {
                             ),
                             input4(
                                 text: _userController.user.value.email,
-                                controller: profileController.emailController),
+                                controller:
+                                    _userController.emailControllerSignup),
                             // input4(
                             //     text: 'Comandato',
                             //     controller: profileController.companyController),
@@ -133,35 +136,38 @@ class _ProfileState extends State<Profile> {
                                 // ),
                                 Expanded(
                                   child: input4(
-                                      text: _userController.user.value.phoneNumber,
-                                      controller:_userController.contactControllerSignup ),
+                                      text: _userController
+                                          .user.value.phoneNumber,
+                                      controller: _userController
+                                          .contactControllerSignup),
                                 ),
                               ],
                             ),
                             // input4(text: '67778889', controller: profileController.IDController),
                             input4(
-                                text: (_userController.user.value.address!=null && _userController.user.value.address!.isEmpty)
-                                  ?'${_userController.user.value.address}'
-                                  :"N/A"
-                                ,controller: profileController.addressController),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: input4(
-                                      text: (_userController.user.value.city!=null && _userController.user.value.city!.isEmpty)
-                                          ?'${_userController.user.value.city}'
-                                          :"N/A",
-                                      controller: profileController.cityController),
-                                ),
-                                Expanded(
-                                  child: input4(
-                                      text: (_userController.user.value.state!=null && _userController.user.value.state!.isEmpty)
-                                          ?'${_userController.user.value.state}'
-                                          :"N/A",
-                                      controller: profileController.stateController),
-                                ),
-                              ],
-                            ),
+                                text: (_userController.user.value.country != '')
+                                    ? '${_userController.user.value.country}'
+                                    : "N/A",
+                                controller:
+                                    _userController.addressControllerSignup),
+                            // Row(
+                            //   children: [
+                            //     Expanded(
+                            //       child: input4(
+                            //           text: (_userController.user.value.city!=null && _userController.user.value.city!.isEmpty)
+                            //               ?'${_userController.user.value.city}'
+                            //               :"N/A",
+                            //           controller: _userController.cityControllerSignup),
+                            //     ),
+                            //     Expanded(
+                            //       child: input4(
+                            //           text: (_userController.user.value.state!=null && _userController.user.value.state!.isEmpty)
+                            //               ?'${_userController.user.value.state}'
+                            //               :"N/A",
+                            //           controller: _userController.stateControllerSignup),
+                            //     ),
+                            //   ],
+                            // ),
                             Row(
                               children: [
                                 Expanded(
@@ -171,11 +177,19 @@ class _ProfileState extends State<Profile> {
                                         height: 36,
                                         child: Center(
                                           child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 30),
-                                            child: Text((_userController.user.value.country!=null && _userController.user.value.country!.isEmpty)
-                                                ?'${_userController.user.value.country}'
-                                                :"N/A",
+                                            padding:
+                                                const EdgeInsets.only(left: 30),
+                                            child: Text(
+                                                (_userController.user.value
+                                                                .country !=
+                                                            null &&
+                                                        _userController
+                                                            .user
+                                                            .value
+                                                            .country!
+                                                            .isEmpty)
+                                                    ? '${_userController.user.value.country}'
+                                                    : "N/A",
                                                 style: textStyle3),
                                           ),
                                         ),
@@ -244,11 +258,14 @@ class _ProfileState extends State<Profile> {
                             Stack(
                               children: [
                                 TextField(
-                                  controller: _userController.passwordControllerSignup,
+                                  controller:
+                                      _userController.passwordControllerSignup,
                                   cursorColor: primaryColor,
-                                  obscureText: profileController.isObscurePassword,
+                                  obscureText:
+                                      profileController.isObscurePassword,
                                   decoration: InputDecoration(
-                                    hintText: _userController.user.value.password,
+                                    hintText:
+                                        _userController.user.value.password,
                                     hintStyle: textStyle3,
                                     border: InputBorder.none,
                                     prefixIcon: const Icon(
@@ -259,14 +276,18 @@ class _ProfileState extends State<Profile> {
                                     suffix: IconButton(
                                       onPressed: () {
                                         setState(() {
-                                          if (profileController.isObscurePassword == true) {
-                                            profileController.isObscurePassword = false;
+                                          if (profileController
+                                                  .isObscurePassword ==
+                                              true) {
+                                            profileController
+                                                .isObscurePassword = false;
                                           } else {
-                                            profileController.isObscurePassword = true;
+                                            profileController
+                                                .isObscurePassword = true;
                                           }
                                         });
                                       },
-                                      icon:  const Icon(
+                                      icon: const Icon(
                                         Icons.remove_red_eye,
                                         color: tenthColor,
                                         size: 20,
@@ -295,7 +316,8 @@ class _ProfileState extends State<Profile> {
                                     setState(() {});
                                   },
                                   style: ElevatedButton.styleFrom(
-                                      foregroundColor: secondaryColor, backgroundColor: primaryColor,
+                                      foregroundColor: secondaryColor,
+                                      backgroundColor: primaryColor,
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(5),
                                       )),
@@ -334,7 +356,7 @@ class _ProfileState extends State<Profile> {
                                 shape: BoxShape.circle,
                                 border: Border.all(color: tertiaryColor),
                               ),
-                              child:  profileController.displayImage(),
+                              child: profileController.displayImage(),
                             ),
                           ),
                         ),

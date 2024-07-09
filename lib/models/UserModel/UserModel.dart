@@ -51,6 +51,10 @@ class UserData {
     this.approved,
     this.approvedBy,
     this.govermentId,
+    this.address,
+    this.city,
+    this.state,
+    this.country,
   });
 
   int? id;
@@ -70,46 +74,58 @@ class UserData {
   String? approved;
   dynamic approvedBy;
   dynamic govermentId;
+  String? address;
+  String? city;
+  String? state;
+  String? country;
 
   factory UserData.fromJson(Map<String, dynamic> json) => UserData(
-        id: json["id"],
-        name: json["name"],
-        email: json["email"],
-        mobile: json["mobile"],
-        image: json["image"],
-        accessToken: json["access_token"],
-        emailVerifiedAt: json["email_verified_at"],
-        status: json["status"],
-        createdBy: json["created_by"],
-        updatedBy: json["updated_by"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
-        // latitude: json["latitude"].toDouble(),
-        // longitude: json["longitude"].toDouble(),
-        approved: json["approved"],
-        approvedBy: json["approved_by"],
-        govermentId: json["goverment_id"],
-      );
+    id: json["id"],
+    name: json["name"],
+    email: json["email"],
+    mobile: json["mobile"],
+    image: json["image"],
+    accessToken: json["access_token"],
+    emailVerifiedAt: json["email_verified_at"],
+    status: json["status"],
+    createdBy: json["created_by"],
+    updatedBy: json["updated_by"],
+    createdAt: DateTime.parse(json["created_at"]),
+    updatedAt: DateTime.parse(json["updated_at"]),
+    latitude: json["latitude"]?.toDouble(),
+    longitude: json["longitude"]?.toDouble(),
+    approved: json["approved"],
+    approvedBy: json["approved_by"],
+    govermentId: json["goverment_id"],
+    address: json["address"],
+    city: json["city"],
+    state: json["state"],
+    country: json["country"],
+  );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "email": email,
-        "mobile": mobile,
-        "image": image,
-        "access_token": accessToken,
-        "email_verified_at": emailVerifiedAt,
-        "status": status,
-        "created_by": createdBy,
-        "updated_by": updatedBy,
-        "created_at": createdAt,
-        "updated_at": updatedAt,
-        "latitude": latitude,
-        "longitude": longitude,
-        "approved": approved,
-        "approved_by": approvedBy,
-        "goverment_id": govermentId,
-      };
+    "id": id,
+    "name": name,
+    "email": email,
+    "mobile": mobile,
+    "image": image,
+    "access_token": accessToken,
+    "email_verified_at": emailVerifiedAt,
+    "status": status,
+    "created_by": createdBy,
+    "updated_by": updatedBy,
+    "created_at": createdAt?.toIso8601String(),
+    "updated_at": updatedAt?.toIso8601String(),
+    "latitude": latitude,
+    "longitude": longitude,
+    "approved": approved,
+    "approved_by": approvedBy,
+    "goverment_id": govermentId,
+    "address": address,
+    "city": city,
+    "state": state,
+    "country": country,
+  };
 
   map(UserData Function(dynamic e) param0) {}
 }
