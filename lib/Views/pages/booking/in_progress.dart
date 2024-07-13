@@ -84,9 +84,9 @@ class _InProgressState extends State<InProgress> {
                   height: 10,
                 ),
                 Text(
-                  'Processing',
+                  'New Jobs',
                   style: textStyle2.copyWith(
-                      fontWeight: FontWeight.bold, color: seventhColor),
+                      fontWeight: FontWeight.bold, color: fifthColor),
                 ),
                 const SizedBox(
                   height: 10,
@@ -109,31 +109,31 @@ class _InProgressState extends State<InProgress> {
             ),
           ),
         ),
-        Container(
-          height: 55,
-          width: double.infinity,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8), color: primaryColor),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'TOTAL',
-                  style: textStyle3.copyWith(
-                      color: secondaryColor, fontWeight: FontWeight.bold),
-                ),
-                Text(
-                     //widget.dataSource
-                  '\$231.00',
-                  style: textStyle2.copyWith(
-                      color: secondaryColor, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-          ),
-        ),
+        // Container(
+        //   height: 55,
+        //   width: double.infinity,
+        //   decoration: BoxDecoration(
+        //       borderRadius: BorderRadius.circular(8), color: primaryColor),
+        //   child: Padding(
+        //     padding: const EdgeInsets.symmetric(horizontal: 20),
+        //     child: Row(
+        //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //       children: [
+        //         Text(
+        //           'TOTAL',
+        //           style: textStyle3.copyWith(
+        //               color: secondaryColor, fontWeight: FontWeight.bold),
+        //         ),
+        //         Text(
+        //              //widget.dataSource
+        //           '\$231.00',
+        //           style: textStyle2.copyWith(
+        //               color: secondaryColor, fontWeight: FontWeight.bold),
+        //         ),
+        //       ],
+        //     ),
+        //   ),
+        // ),
         const SizedBox(
           height: 20,
         ),

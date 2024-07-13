@@ -135,21 +135,21 @@ class _SideDrawerState extends State<SideDrawer> {
                               ],
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Balance:',
-                                  style: textStyle3,
-                                ),
-                                Text('\$ 0 ',
-                                    style: textStyle3.copyWith(
-                                        fontWeight: FontWeight.bold)),
-                              ],
-                            ),
-                          ),
+                          // Padding(
+                          //   padding: const EdgeInsets.symmetric(horizontal: 20),
+                          //   child: Row(
+                          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          //     children: [
+                          //       Text(
+                          //         'Balance:',
+                          //         style: textStyle3,
+                          //       ),
+                          //       Text('\$ 0 ',
+                          //           style: textStyle3.copyWith(
+                          //               fontWeight: FontWeight.bold)),
+                          //     ],
+                          //   ),
+                          // ),
                           Divider(
                             color: sixthColor.withOpacity(0.2),
                           ),

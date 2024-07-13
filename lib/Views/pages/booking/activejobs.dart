@@ -110,31 +110,31 @@ class _ActiveJobsState extends State<ActiveJobs> {
             ),
           ),
         ),
-        Container(
-          height: 55,
-          width: double.infinity,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8), color: primaryColor),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'TOTAL',
-                  style: textStyle3.copyWith(
-                      color: secondaryColor, fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  //widget.dataSource
-                  '\$231.00',
-                  style: textStyle2.copyWith(
-                      color: secondaryColor, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-          ),
-        ),
+        // Container(
+        //   height: 55,
+        //   width: double.infinity,
+        //   decoration: BoxDecoration(
+        //       borderRadius: BorderRadius.circular(8), color: primaryColor),
+        //   child: Padding(
+        //     padding: const EdgeInsets.symmetric(horizontal: 20),
+        //     child: Row(
+        //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //       children: [
+        //         Text(
+        //           'TOTAL',
+        //           style: textStyle3.copyWith(
+        //               color: secondaryColor, fontWeight: FontWeight.bold),
+        //         ),
+        //         Text(
+        //           //widget.dataSource
+        //           '\$231.00',
+        //           style: textStyle2.copyWith(
+        //               color: secondaryColor, fontWeight: FontWeight.bold),
+        //         ),
+        //       ],
+        //     ),
+        //   ),
+        // ),
         const SizedBox(
           height: 20,
         ),

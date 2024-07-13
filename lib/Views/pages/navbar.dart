@@ -21,7 +21,7 @@ class _NavBarState extends State<NavBar> {
   final tabs = [
     const DashBoard(),
     //Historial(),
-    const MapMain(),
+    // const MapMain(),
     const Booking(),
     const Profile(isBackButton: false),
   ];
@@ -71,13 +71,13 @@ List<PersistentBottomNavBarItem> persistentItems(context) {
       activeColorPrimary: secondaryColor,
       activeColorSecondary: secondaryColor,
     ),
-    PersistentBottomNavBarItem(
-      icon: const Icon(FontAwesomeIcons.solidMap, size: 20),
-      title: 'Maps',
-      textStyle: textStyle4,
-      activeColorPrimary: secondaryColor,
-      activeColorSecondary: secondaryColor,
-    ),
+    // PersistentBottomNavBarItem(
+    //   icon: const Icon(FontAwesomeIcons.solidMap, size: 20),
+    //   title: 'Maps',
+    //   textStyle: textStyle4,
+    //   activeColorPrimary: secondaryColor,
+    //   activeColorSecondary: secondaryColor,
+    // ),
     PersistentBottomNavBarItem(
       icon: const Icon(FontAwesomeIcons.bookOpen, size: 20),
       title: 'My Jobs',
