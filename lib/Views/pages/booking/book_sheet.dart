@@ -128,13 +128,13 @@ class _BookingSheetState extends State<BookingSheet> {
                       ],
                     ),
                     upperTile(
-                        'Customer', FontAwesomeIcons.userAlt, '${
+                        'Company', FontAwesomeIcons.userAlt, '${
                         (controller.jobsDetail.value!=null)
                             ?controller.jobsDetail.value!['user_id']
                             :""
                     }'),
-                    // upperTile(
-                    //     'Company', FontAwesomeIcons.solidBuilding, 'Comandato'),
+                    upperTile(
+                        'Company', FontAwesomeIcons.solidBuilding, 'Comandato'),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -429,7 +429,12 @@ class _BookingSheetState extends State<BookingSheet> {
                     const SizedBox(
                       height: 20,
                     ),
+                    widget.status == true ?
                     customButton5('START', secondaryColor, fifthColor, () {
+                      setState(() {
+                        isDialogShows = true;
+                      });
+                    }):customButton5('Complete', secondaryColor, fifthColor, () {
                       setState(() {
                         isDialogShows = true;
                       });
@@ -531,12 +536,18 @@ class _BookingSheetState extends State<BookingSheet> {
                     const SizedBox(
                       height: 30,
                     ),
+                    widget.status == true ?
                     Center(
                         child: Text(
                       'Are you sure you want to\nStart the job?',
                       style: textStyle3,
                       textAlign: TextAlign.center,
-                    )),
+                    )):Center(
+                        child: Text(
+                          'Are you sure you want to\nComplete the job?',
+                          style: textStyle3,
+                          textAlign: TextAlign.center,
+                        ))
                   ],
                 ),
                 const SizedBox(

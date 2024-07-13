@@ -117,25 +117,27 @@ class _BookingScreenWidgetState extends State<BookingScreenWidget> {
               child: cupertinoTabBarIIIValue == 0
                   ? Obx(() => InProgress(
                   dataSource: bookingController.myJobsList.value != null
-                      ? bookingController.myJobsList.value!['inprocess'] ?? []
+                      ? (bookingController.myJobsList.value!['inprocess'] ?? []).reversed.toList()
                       : []))
                   : cupertinoTabBarIIIValue == 1
                   ? Obx(() => ActiveJobs(
                   dataSource: bookingController.myJobsList.value != null
-                      ? bookingController.myJobsList.value!['inprogress'] ?? []
+                      ? (bookingController.myJobsList.value!['inprogress'] ?? []).reversed.toList()
                       : []))
                   : cupertinoTabBarIIIValue == 2
                   ? Obx(() => Completed(
                   dataSource: bookingController.myJobsList.value != null
-                      ? bookingController.myJobsList.value!['completed'] ?? []
+                      ? (bookingController.myJobsList.value!['completed'] ?? []).reversed.toList()
                       : []))
                   : cupertinoTabBarIIIValue == 3
                   ? Obx(() => Cancelled(
                   dataSource: bookingController.myJobsList.value != null
-                      ? bookingController.myJobsList.value!['declined'] ?? []
+                      ? (bookingController.myJobsList.value!['declined'] ?? []).reversed.toList()
                       : []))
                   : MyEarnings(),
-            ),
+            )
+
+
           ),
         ],
       ),

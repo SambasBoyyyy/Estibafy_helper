@@ -33,10 +33,11 @@ class BookingController extends GetxController {
 
     print("Here's Response");
 
-    // print("---WELCOME--- $result");
+     print("---WELCOME--- $result");
 
     if (result != null) {
       var model = EarningModel.fromMap(result);
+      print(model.data?.unreleasedPaymentEarning);
       return model;
     }else{
       return null;

@@ -31,6 +31,7 @@ class _MyEarningsState extends State<MyEarnings> {
         future: bookingController.getMyEarnings(),
         builder: (context,snapshot) {
           if(snapshot.hasData){
+
             var model = snapshot.data as EarningModel;
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -144,7 +145,7 @@ class _MyEarningsState extends State<MyEarnings> {
                                   height: 10,
                                 ),
                                 Text(
-                                  '${model.data!.releasesPaymentEarning!.totalJobsDone.toString()}',
+                                  '${model.data!.unreleasedPaymentEarning!.totalJobsDone.toString()}',
                                   style: textStyle6.copyWith(
                                       color: fourthColor, fontSize: 20),
                                 ),
@@ -172,7 +173,7 @@ class _MyEarningsState extends State<MyEarnings> {
                               height: 10,
                             ),
                             Text(
-                              '\$ ${model.data!.releasesPaymentEarning!.totalAmount}',
+                              '\$ ${model.data!.unreleasedPaymentEarning!.totalAmount}',
                               style: textStyle6.copyWith(
                                   color: fourthColor, fontSize: 20),
                             ),
@@ -192,7 +193,7 @@ class _MyEarningsState extends State<MyEarnings> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
-                      child: middleBoxes('Total Jobs', FontAwesomeIcons.box, '${model.data!.releasesPaymentEarning!.totalJobsDone.toString()}'),
+                      child: middleBoxes('Total Number Of Days Worked', FontAwesomeIcons.calendarDay, '${model.data!.unreleasedPaymentEarning!.totalNumberOfDaysWorked.toString()}'),
                     ),
                     // Expanded(
                     //   child: middleBoxes(
@@ -253,7 +254,7 @@ class _MyEarningsState extends State<MyEarnings> {
                             height: 10,
                           ),
                           Text(
-                            '\$ ${model.data!.releasesPaymentEarning!.totalAmount}',
+                            '\$ ${model.data!.unreleasedPaymentEarning!.totalAmount}',
                             style: textStyle6.copyWith(
                                 color: secondaryColor, fontSize: 20),
                           ),

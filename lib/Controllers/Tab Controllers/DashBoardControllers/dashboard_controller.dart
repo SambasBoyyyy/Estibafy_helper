@@ -23,7 +23,7 @@ class DashboardController extends GetxController {
     print("Here's Response -------");
 
     if (result != null) {
-      // print("---All Active Jobs---${result['data']['active_jobs']}");
+       print("---All Active Jobs---${result['data']['active_jobs']}");
       jobsList.value = result['data']['active_jobs'];
     }
   }
