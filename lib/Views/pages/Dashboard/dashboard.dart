@@ -113,7 +113,7 @@ class _DashBoardState extends State<DashBoard> {
                         height: 10,
                       ),
                       Expanded(
-                        child: bookingController.myJobsList.value?.isNotEmpty == true? Obx(() => InProgress(
+                        child: bookingController.myJobsList.value?.length != 0 ? Obx(() => InProgress(
                             dataSource: bookingController.myJobsList.value != null
                                 ? (bookingController.myJobsList.value!['inprocess'] ?? []).reversed.toList()
                                 : [])):const Center(child: Text('Waiting for new jobs'),)

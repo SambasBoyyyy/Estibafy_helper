@@ -14,7 +14,8 @@ import '../UserModel/UserModel.dart';
 
 class WebAPIs {
   //static String baseURL = 'https://container.linktoeat.com/api/helper/';
-  static String baseURL = 'http://149.102.158.40/container/public/index.php/api/helper/';
+  static String baseURL =
+      'http://149.102.158.40/container/public/index.php/api/helper/';
 
   static Future<void> sendNotificationToken({
     required String token,
@@ -23,7 +24,8 @@ class WebAPIs {
       "fcm_token": token,
     };
     Response r = await post(
-      Uri.parse('http://149.102.158.40/container/public/index.php/api/fcmtoken/add'),
+      Uri.parse(
+          'http://149.102.158.40/container/public/index.php/api/fcmtoken/add'),
       headers: getAuthHeader(),
       body: body,
     );
@@ -37,15 +39,25 @@ class WebAPIs {
   }) async {
     Map<String, String> body = {
       'job_id': id,
-      'images': image,
+      // 'images': image,
       'status': status,
     };
     print("calling api");
-    Response r = await post(
-      Uri.parse(baseURL + 'job/action/status'),
-      body: body,
-      headers: getAuthHeader(),
-    );
+    Response r;
+    if (status == 'cometed') {// 'completed'
+      print("In completedddd");
+       r = await post(
+        Uri.parse(baseURL + 'job/completed'),
+        body: body,
+        headers: getAuthHeader(),
+      );
+    } else {
+       r = await post(
+        Uri.parse(baseURL + 'job/action/status'),
+        body: body,
+        headers: getAuthHeader(),
+      );
+    }
 
     if (validateResponse(r)) {
       return true;
@@ -106,7 +118,7 @@ class WebAPIs {
       'image': province,
     };
     print("calling api");
-    Response r = await post(Uri.parse(baseURL + 'signup'),body: body);
+    Response r = await post(Uri.parse(baseURL + 'signup'), body: body);
     // Response r = await post(
     //   Uri.parse(
     //     baseURL +
@@ -138,7 +150,7 @@ class WebAPIs {
     if (r.statusCode == 200) {
       var result = json.decode(r.body);
 
-      if(result['message']!=null){
+      if (result['message'] != null) {
         K.showToast(message: result['message']);
       }
       if (result['status_code'] == 201) {
@@ -154,11 +166,15 @@ class WebAPIs {
       return null;
     }
   }
+
   static Future<http.Response> updateProfile({
     required Map<String, dynamic> body,
   }) async {
     // Convert the body to form data
-    String formData = body.entries.map((entry) => '${Uri.encodeComponent(entry.key)}=${Uri.encodeComponent(entry.value.toString())}').join('&');
+    String formData = body.entries
+        .map((entry) =>
+            '${Uri.encodeComponent(entry.key)}=${Uri.encodeComponent(entry.value.toString())}')
+        .join('&');
 
     print("body=== $formData");
 
@@ -246,7 +262,8 @@ class WebAPIs {
   static Future<Map<String, dynamic>?> getJobsDetails(String jobID) async {
     print(jobID);
     Response r = await get(
-      Uri.parse("${'http://149.102.158.40/container/public/index.php/api/job/detail/' + jobID}"),
+      Uri.parse(
+          "${'http://149.102.158.40/container/public/index.php/api/job/detail/' + jobID}"),
       headers: getAuthHeader(),
     );
     print(K.userToken);
@@ -297,9 +314,6 @@ class WebAPIs {
     return null;
   }
 
-
-
-
   static Future<Map<String, dynamic>?> getMyEarnings() async {
     print("Calling GetMyjobs data");
     Response r = await get(
@@ -314,7 +328,6 @@ class WebAPIs {
     }
     return null;
   }
-
 
 //------------------------TEST--------------//
   static Future<void> getJson(

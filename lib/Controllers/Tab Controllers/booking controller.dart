@@ -19,7 +19,7 @@ class BookingController extends GetxController {
 
     print("Here's Response");
 
-    // print("---WELCOME--- $result");
+    print("---getmyjobs--- $result");
 
     if (result != null) {
       // print("---All Active Jobs---${result['data']['active_jobs']}");
