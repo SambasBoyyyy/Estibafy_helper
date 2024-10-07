@@ -99,6 +99,7 @@ dependency_overrides:
   get:
   persistent_bottom_nav_bar:
   firebase_core_platform_interface: ^5.0.0
+  win32: ^5.5.4
 #  device_info_plus: any
 
 # For information on the generic Dart part of this file, see the

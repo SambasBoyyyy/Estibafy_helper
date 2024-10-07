@@ -45,7 +45,7 @@ Widget buildBookingInProgressCard(BuildContext context, int index, Map<String, d
                   ),
                   child: Center(
                       child: Text(
-                      '${data['user']['name']}',
+                      '${data['user']['name'] ?? 'No User Found'}',
                      // 'User',
                     style: textStyle3.copyWith(color: secondaryColor),
                   )),
